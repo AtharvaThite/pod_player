@@ -44,7 +44,7 @@ class _YoutubeVideoViewerState extends State<YoutubeVideoViewer> {
     controller = PodPlayerController(
       playVideoFrom: PlayVideoFrom.networkQualityUrls(videoUrls: urls!),
       podPlayerConfig: const PodPlayerConfig(
-        videoQualityPriority: [360],
+        videoQualityPriority: [144],
       ),
     )..initialise();
   }
