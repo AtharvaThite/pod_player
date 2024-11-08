@@ -138,14 +138,20 @@ class VideoApis {
           ),
         );
       } else {
-        final manifest =
-            await yt.videos.streamsClient.getManifest(youtubeIdOrUrl);
+        final manifest = await yt.videos.streamsClient
+            .getManifest(youtubeIdOrUrl, fullManifest: true);
+
         urls.addAll(
           manifest.muxed.map(
-            (element) => VideoQalityUrls(
-              quality: int.parse(element.qualityLabel.split('p')[0]),
-              url: element.url.toString(),
-            ),
+            (element) {
+              debugPrint(
+                '===== YOUTUBE API ERROR: ${element.qualityLabel}  /  ${element.videoQuality}==========',
+              );
+              return VideoQalityUrls(
+                quality: int.parse(element.qualityLabel.split('p')[0]),
+                url: element.url.toString(),
+              );
+            },
           ),
         );
       }
